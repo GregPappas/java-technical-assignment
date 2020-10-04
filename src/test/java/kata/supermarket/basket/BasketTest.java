@@ -5,6 +5,7 @@ import kata.supermarket.Product;
 import kata.supermarket.WeighedProduct;
 import kata.supermarket.basket.Basket;
 import kata.supermarket.basket.TotalCalculator;
+import kata.supermarket.basket.discounts.DiscountService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,7 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BasketTest {
 
-    private TotalCalculator totalCalculator = new TotalCalculator();
+    private DiscountService discountService = new DiscountService();
+    private TotalCalculator totalCalculator = new TotalCalculator(discountService);
 
     @DisplayName("basket provides its total value when containing...")
     @MethodSource

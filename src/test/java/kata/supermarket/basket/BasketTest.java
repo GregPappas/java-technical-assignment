@@ -1,5 +1,10 @@
-package kata.supermarket;
+package kata.supermarket.basket;
 
+import kata.supermarket.Item;
+import kata.supermarket.Product;
+import kata.supermarket.WeighedProduct;
+import kata.supermarket.basket.Basket;
+import kata.supermarket.basket.TotalCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -14,11 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BasketTest {
 
+    private TotalCalculator totalCalculator = new TotalCalculator();
+
     @DisplayName("basket provides its total value when containing...")
     @MethodSource
     @ParameterizedTest(name = "{0}")
     void basketProvidesTotalValue(String description, String expectedTotal, Iterable<Item> items) {
-        final Basket basket = new Basket();
+        final Basket basket = new Basket(totalCalculator);
         items.forEach(basket::add);
         assertEquals(new BigDecimal(expectedTotal), basket.total());
     }

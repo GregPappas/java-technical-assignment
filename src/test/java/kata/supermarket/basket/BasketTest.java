@@ -1,10 +1,6 @@
 package kata.supermarket.basket;
 
 import kata.supermarket.Item;
-import kata.supermarket.Product;
-import kata.supermarket.WeighedProduct;
-import kata.supermarket.basket.Basket;
-import kata.supermarket.basket.TotalCalculator;
 import kata.supermarket.basket.discounts.DiscountService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,6 +12,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Stream;
 
+import static kata.supermarket.ItemTestBuilders.aPackOfDigestives;
+import static kata.supermarket.ItemTestBuilders.aPintOfMilk;
+import static kata.supermarket.ItemTestBuilders.twoFiftyGramsOfAmericanSweets;
+import static kata.supermarket.ItemTestBuilders.twoHundredGramsOfPickAndMix;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BasketTest {
@@ -63,29 +63,5 @@ class BasketTest {
 
     private static Arguments noItems() {
         return Arguments.of("no items", "0.00", Collections.emptyList());
-    }
-
-    private static Item aPintOfMilk() {
-        return new Product(new BigDecimal("0.49")).oneOf();
-    }
-
-    private static Item aPackOfDigestives() {
-        return new Product(new BigDecimal("1.55")).oneOf();
-    }
-
-    private static WeighedProduct aKiloOfAmericanSweets() {
-        return new WeighedProduct(new BigDecimal("4.99"));
-    }
-
-    private static Item twoFiftyGramsOfAmericanSweets() {
-        return aKiloOfAmericanSweets().weighing(new BigDecimal(".25"));
-    }
-
-    private static WeighedProduct aKiloOfPickAndMix() {
-        return new WeighedProduct(new BigDecimal("2.99"));
-    }
-
-    private static Item twoHundredGramsOfPickAndMix() {
-        return aKiloOfPickAndMix().weighing(new BigDecimal(".2"));
     }
 }

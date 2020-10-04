@@ -9,3 +9,5 @@ In order to do this with a minimal impact on the Basket object itself we'll star
 
 Migrate the BigDecimal.ZERO into the newly created DiscountService
 this is where we'll be able to do our work, currently tests that are in place cover these cases so no tests added yet.
+
+Create the first DiscountRule which will be buy one get one free

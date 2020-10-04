@@ -21,11 +21,11 @@ class TotalCalculator {
                 .setScale(2, RoundingMode.HALF_UP);
     }
 
-    private BigDecimal discounts() {
-        return discountService.calculateDiscount();
+    private BigDecimal discounts(List<Item> items) {
+        return discountService.calculateDiscount(items);
     }
 
     public BigDecimal calculate(List<Item> items) {
-        return subtotal(items).subtract(discounts());
+        return subtotal(items).subtract(discounts(items));
     }
 }

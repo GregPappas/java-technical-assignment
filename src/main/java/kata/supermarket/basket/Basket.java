@@ -7,10 +7,10 @@ import java.util.List;
 import kata.supermarket.Item;
 
 public class Basket {
-    private final TotalCalculator totalCalculator;
+    private final BasketTotalCalculator totalCalculator;
     private final List<Item> items;
 
-    public Basket(TotalCalculator totalCalculator) {
+    public Basket(BasketTotalCalculator totalCalculator) {
         this.totalCalculator = totalCalculator;
         this.items = new ArrayList<>();
     }
@@ -18,6 +18,7 @@ public class Basket {
     public void add(final Item item) {
         this.items.add(item);
     }
+
 
     public BigDecimal total() {
         return totalCalculator.calculate(items);

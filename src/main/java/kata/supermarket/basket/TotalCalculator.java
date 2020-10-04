@@ -5,27 +5,21 @@ import java.math.RoundingMode;
 import java.util.List;
 
 import kata.supermarket.Item;
-import kata.supermarket.basket.discounts.DiscountService;
 
-class TotalCalculator {
-    private final DiscountService discountService;
+public class TotalCalculator {
 
-    public TotalCalculator(DiscountService discountService) {
-        this.discountService = discountService;
+    public BigDecimal subtotalWithRound(List<Item> items) {
+        return round(subTotalNoRound(items));
     }
 
-    protected BigDecimal subtotal(List<Item> items) {
+    public BigDecimal round(BigDecimal value) {
+        return value.setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public BigDecimal subTotalNoRound(List<Item> items) {
         return items.stream().map(Item::price)
                 .reduce(BigDecimal::add)
-                .orElse(BigDecimal.ZERO)
-                .setScale(2, RoundingMode.HALF_UP);
+                .orElse(BigDecimal.ZERO);
     }
 
-    private BigDecimal discounts(List<Item> items) {
-        return discountService.calculateDiscount(items);
-    }
-
-    public BigDecimal calculate(List<Item> items) {
-        return subtotal(items).subtract(discounts(items));
-    }
 }
